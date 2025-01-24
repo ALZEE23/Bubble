@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
     public float mouseSensitivity = 100f;
     public Transform playerBody;
 
