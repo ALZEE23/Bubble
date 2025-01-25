@@ -10,9 +10,9 @@ public class Dolphin : MonoBehaviour
     public Transform player;
     public float followSpeed = 0.5f;
     public float detectionRadius = 10f;
-    public float stoppingDistance = 1f; 
+    public float stoppingDistance = 1f;
     public LayerMask obstacleMask;
-    public float floatHeight = 0f; 
+    public float floatHeight = 0f;
     public Animator animator;
     private NavMeshAgent agent;
     private Rigidbody rb;
@@ -21,24 +21,24 @@ public class Dolphin : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true; 
+        rb.isKinematic = true;
         agent.speed = followSpeed;
-        agent.updateUpAxis = false; 
-        agent.updateRotation = false; 
-        agent.stoppingDistance = stoppingDistance; 
+        agent.updateUpAxis = false;
+        agent.updateRotation = false;
+        agent.stoppingDistance = stoppingDistance;
     }
 
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        
+
         if (distanceToPlayer <= detectionRadius)
         {
-            
-            if (!IsPlayerBehindObstacle() && isSit == true)
+
+            if (!IsPlayerBehindObstacle() && isWalk == true)
             {
-                animator.SetBool("isWalking", true);
+                animator.SetBool("Walking", true);
                 agent.SetDestination(player.position);
             }
 
@@ -50,22 +50,35 @@ public class Dolphin : MonoBehaviour
         }
 
         // Stop agent if within stopping distance
-        // if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
-        // {
-        //     agent.isStopped = true; // Stop movement
-        //     animator.SetBool("jumpscare", true);
-        // }
-        // else
-        // {
-        //     agent.isStopped = false; // Resume movement if out of range
-        // }
+        if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+        {
+            agent.isStopped = true; // Stop movement
+            animator.SetBool("Sit", true);
+            StartCoroutine(Wait());
+            IEnumerator Wait()
+            {
+                yield return new WaitForSeconds(3f);
+                animator.SetBool("Talk", true);
+            }
+        }
+        else
+        {
+            animator.SetBool("Talk", false);
+            animator.SetBool("Sit", false);
+            agent.isStopped = false; // Resume movement if out of range
+        }
 
 
 
-        
+
         Vector3 position = transform.position;
         // position.y = floatHeight; // Keep height stable
         transform.position = position;
+    }
+    public IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1f);
+        animator.SetBool("Talk", true);
     }
 
     bool IsPlayerBehindObstacle()

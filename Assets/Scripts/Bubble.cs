@@ -19,21 +19,21 @@ public class Bubble : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true; // Allow physics interaction
+        rb.isKinematic = true; 
         agent.speed = followSpeed;
-        agent.updateUpAxis = false; // Prevents the agent from being affected by the ground
-        agent.updateRotation = false; // Prevents the agent from rotating
-        agent.stoppingDistance = stoppingDistance; // Set stopping distance
+        agent.updateUpAxis = false; 
+        agent.updateRotation = false; 
+        agent.stoppingDistance = stoppingDistance; 
     }
 
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        // Check if the player is within detection range
+        
         if (distanceToPlayer <= detectionRadius)
         {
-            // Check if the player is not behind an obstacle
+            
             if (!IsPlayerBehindObstacle())
             {
                 agent.SetDestination(player.position);
@@ -50,9 +50,9 @@ public class Bubble : MonoBehaviour
         //     agent.isStopped = false; // Resume movement if out of range
         // }
 
-        // Ensure the bubble stays at the specified float height
+        
         Vector3 position = transform.position;
-        position.y = floatHeight; // Keep height stable
+        position.y = floatHeight; 
         transform.position = position;
     }
 
