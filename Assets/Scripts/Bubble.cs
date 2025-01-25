@@ -41,14 +41,14 @@ public class Bubble : MonoBehaviour
         }
 
         // Stop agent if within stopping distance
-        if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
-        {
-            agent.isStopped = true; // Stop movement
-        }
-        else
-        {
-            agent.isStopped = false; // Resume movement if out of range
-        }
+        // if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+        // {
+        //     agent.isStopped = true; // Stop movement
+        // }
+        // else
+        // {
+        //     agent.isStopped = false; // Resume movement if out of range
+        // }
 
         // Ensure the bubble stays at the specified float height
         Vector3 position = transform.position;

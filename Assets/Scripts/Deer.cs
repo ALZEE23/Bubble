@@ -48,15 +48,15 @@ public class Deer : MonoBehaviour
         }
 
         // Stop agent if within stopping distance
-        if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
-        {
-            agent.isStopped = true; // Stop movement
-            animator.SetBool("jumpscare", true);
-        }
-        else
-        {
-            agent.isStopped = false; // Resume movement if out of range
-        }
+        // if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+        // {
+        //     agent.isStopped = true; // Stop movement
+        //     animator.SetBool("jumpscare", true);
+        // }
+        // else
+        // {
+        //     agent.isStopped = false; // Resume movement if out of range
+        // }
 
         
 

@@ -17,6 +17,9 @@ public class Movement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public GameObject deer;
+    public Camera mainCamera;
+    public Camera bubbleCamera;
 
     void Update()
     {
@@ -41,21 +44,47 @@ public class Movement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        if(isBlow == true)
-        {
-            blow.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
-        }
+
 
 
         if (Input.GetMouseButton(1))
         {
             isBlow = true;
-            blow.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+            blow.transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
             BoxCollider blowCollider = blow.GetComponent<BoxCollider>();
             if (blowCollider != null)
             {
                 blowCollider.size = blow.transform.localScale;
             }
+        }
+        else
+        {
+            isBlow = false;
+            StartCoroutine(Shrink());
+        }
+
+        IEnumerator Shrink()
+        {
+            yield return new WaitForSeconds(0.5f);
+            if (isBlow == false)
+            {
+                blow.transform.localScale = new Vector3(0.88f, 0.88f, 0.88f);
+            }
+        }
+
+
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "bubble")
+        {
+            mainCamera.enabled = false;
+            bubbleCamera.enabled = true;
+            // bubbleCamera.targetDisplay = 1;
+            deer.SetActive(true);
+            this.transform.localScale = new Vector3(0.35f, 0.35f, 0.35f);
+            Destroy(other.gameObject);
         }
     }
 }
