@@ -23,7 +23,7 @@ public class Interact : MonoBehaviour
             if (currentObject != null && currentObject.tag == "trash")
             {
                 Debug.Log("Trash");
-                // Assuming you have a variable to keep track of trash count
+                
                 trash++;
                 Destroy(currentObject);
                 currentObject = null;
@@ -33,7 +33,7 @@ public class Interact : MonoBehaviour
             if (currentObject != null && currentObject.tag == "toy")
             {
                 Debug.Log("Toy");
-                // Assuming you have a variable to keep track of trash count
+                
                 toy++;
                 Destroy(currentObject);
                 currentObject = null;

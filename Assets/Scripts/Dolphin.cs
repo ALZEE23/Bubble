@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Deer : MonoBehaviour
+public class Dolphin : MonoBehaviour
 {
+    public bool isSit;
+    public bool isWalk;
     public Transform player;
     public float followSpeed = 0.5f;
     public float detectionRadius = 10f;
@@ -33,14 +35,14 @@ public class Deer : MonoBehaviour
         
         if (distanceToPlayer <= detectionRadius)
         {
-           
-            if (!IsPlayerBehindObstacle())
+            
+            if (!IsPlayerBehindObstacle() && isSit == true)
             {
                 animator.SetBool("isWalking", true);
                 agent.SetDestination(player.position);
             }
 
-            animator.SetBool("isWalking", true);
+            // animator.SetBool("isWalking", true);
 
             Vector3 direction = (player.position - transform.position).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
@@ -58,11 +60,11 @@ public class Deer : MonoBehaviour
         //     agent.isStopped = false; // Resume movement if out of range
         // }
 
-        
+
 
         
         Vector3 position = transform.position;
-        
+        // position.y = floatHeight; // Keep height stable
         transform.position = position;
     }
 
@@ -76,4 +78,3 @@ public class Deer : MonoBehaviour
         return false;
     }
 }
-

@@ -83,7 +83,7 @@ public class Movement : MonoBehaviour
             bubbleCamera.enabled = true;
             // bubbleCamera.targetDisplay = 1;
             deer.SetActive(true);
-            this.transform.localScale = new Vector3(0.35f, 0.35f, 0.35f);
+            this.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             Destroy(other.gameObject);
         }
     }
