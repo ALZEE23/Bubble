@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -8,9 +9,10 @@ public class Movement : MonoBehaviour
     public float speed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
-
+    public GameObject blow;
     private Vector3 velocity;
     private bool isGrounded;
+    public bool isBlow = false;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -38,5 +40,22 @@ public class Movement : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        if(isBlow == true)
+        {
+            blow.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+        }
+
+
+        if (Input.GetMouseButton(1))
+        {
+            isBlow = true;
+            blow.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+            BoxCollider blowCollider = blow.GetComponent<BoxCollider>();
+            if (blowCollider != null)
+            {
+                blowCollider.size = blow.transform.localScale;
+            }
+        }
     }
 }
