@@ -79,6 +79,7 @@ public class Movement : MonoBehaviour
     {
         if (other.gameObject.tag == "bubble")
         {
+            blow.SetActive(false);
             mainCamera.enabled = false;
             bubbleCamera.enabled = true;
             // bubbleCamera.targetDisplay = 1;

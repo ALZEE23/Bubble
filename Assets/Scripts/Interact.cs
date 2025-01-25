@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Interact : MonoBehaviour
@@ -10,6 +11,8 @@ public class Interact : MonoBehaviour
     public int bin;
     private bool isInTrigger = false;
     private GameObject currentObject;
+    public TextMeshProUGUI textMeshPro;
+    public TextMeshProUGUI textButton;
     void Start()
     {
 
@@ -20,10 +23,11 @@ public class Interact : MonoBehaviour
     {
         if (isInTrigger && Input.GetMouseButton(0))
         {
+            // textMeshPro.enabled = true;
             if (currentObject != null && currentObject.tag == "trash")
             {
                 Debug.Log("Trash");
-                
+                textMeshPro.text = "Go to the bin";
                 trash++;
                 Destroy(currentObject);
                 currentObject = null;
@@ -33,7 +37,7 @@ public class Interact : MonoBehaviour
             if (currentObject != null && currentObject.tag == "toy")
             {
                 Debug.Log("Toy");
-                
+                textMeshPro.text = "Give to Lumbas";
                 toy++;
                 Destroy(currentObject);
                 currentObject = null;
@@ -43,6 +47,7 @@ public class Interact : MonoBehaviour
             if (currentObject != null && currentObject.tag == "bin")
             {
                 Debug.Log("Bin");
+                textMeshPro.text = "Bin";
                 if (trash > 0)
                 {
                     trash--;
@@ -51,7 +56,7 @@ public class Interact : MonoBehaviour
                 // {
                 //     toy--;
                 // }
-                
+
                 bin++;
                 // Destroy(currentObject);
                 currentObject = null;
@@ -63,23 +68,39 @@ public class Interact : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        
         Debug.Log("Trigger");
         if (other.gameObject.tag == "trash")
         {
+            textMeshPro.text = "Pick up trash";
             isInTrigger = true;
             currentObject = other.gameObject;
+            textButton.enabled = true;
         }
 
         if (other.gameObject.tag == "toy")
         {
+            textMeshPro.text = "Pick up toy";
             isInTrigger = true;
             currentObject = other.gameObject;
+            textButton.enabled = true;
         }
 
         if (other.gameObject.tag == "bin")
         {
+            textMeshPro.text = "Throw trash";
             isInTrigger = true;
             currentObject = other.gameObject;
+            textButton.enabled = true;
+        }
+
+        if (other.gameObject.tag == "bubble")
+        {
+            textMeshPro.text = "Blow bubble";
+            isInTrigger = true;
+            currentObject = other.gameObject;
+            textButton.enabled = true;
+            textButton.text = "[RMB]";
         }
     }
 

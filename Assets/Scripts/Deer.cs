@@ -40,7 +40,7 @@ public class Deer : MonoBehaviour
                 agent.SetDestination(player.position);
             }
 
-            animator.SetBool("isWalking", true);
+            // animator.SetBool("isWalking", true);
 
             Vector3 direction = (player.position - transform.position).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
@@ -48,15 +48,16 @@ public class Deer : MonoBehaviour
         }
 
         // Stop agent if within stopping distance
-        // if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
-        // {
-        //     agent.isStopped = true; // Stop movement
-        //     animator.SetBool("jumpscare", true);
-        // }
-        // else
-        // {
-        //     agent.isStopped = false; // Resume movement if out of range
-        // }
+        if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+        {
+            agent.isStopped = true; // Stop movement
+            animator.SetBool("jumpscare", true);
+        }
+        else
+        {
+            animator.SetBool("jumpscare", false);
+            agent.isStopped = false; // Resume movement if out of range
+        }
 
         
 
@@ -74,6 +75,14 @@ public class Deer : MonoBehaviour
             return hit.transform != player;
         }
         return false;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "player")
+        {
+            Debug.Log("Player");
+        }
     }
 }
 
