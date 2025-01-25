@@ -8,6 +8,7 @@ TagManager:
   - trash
   - gift
   - toy
+  - bin
   layers:
   - Default
   - TransparentFX
