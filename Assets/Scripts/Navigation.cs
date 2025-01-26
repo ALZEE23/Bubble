@@ -11,6 +11,10 @@ public class Navigation : MonoBehaviour
         SceneManager.LoadScene("Stage 1");
     }
 
+    public void Play1(){
+        SceneManager.LoadScene("Stage 2");
+    }
+
     public void Quit()
     {
         Application.Quit();

@@ -12,6 +12,9 @@ TagManager:
   - book
   - rak
   - lumbas
+  - sofa
+  - box
+  - water
   layers:
   - Default
   - TransparentFX

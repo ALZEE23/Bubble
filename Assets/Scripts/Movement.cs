@@ -68,7 +68,7 @@ public class Movement : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             if (isBlow == false)
             {
-                blow.transform.localScale = new Vector3(0.88f, 0.88f, 0.88f);
+                blow.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
             }
         }
 
@@ -87,5 +87,18 @@ public class Movement : MonoBehaviour
             this.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             Destroy(other.gameObject);
         }
+
+        if (other.gameObject.tag == "water")
+        {
+            blow.SetActive(false);
+            mainCamera.enabled = true;
+            bubbleCamera.enabled = false;
+            // bubbleCamera.targetDisplay = 1;
+            deer.SetActive(false);
+            this.transform.localScale = new Vector3(1f, 1f, 1f);
+            Destroy(other.gameObject);
+        }
     }
+
+
 }
