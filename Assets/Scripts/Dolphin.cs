@@ -16,6 +16,7 @@ public class Dolphin : MonoBehaviour
     public Animator animator;
     private NavMeshAgent agent;
     private Rigidbody rb;
+    public GameObject Bubble;
 
     void Start()
     {
@@ -26,6 +27,18 @@ public class Dolphin : MonoBehaviour
         agent.updateUpAxis = false;
         agent.updateRotation = false;
         agent.stoppingDistance = stoppingDistance;
+        StartCoroutine(Walking());
+        IEnumerator Walking()
+        {
+            yield return new WaitForSeconds(4f);
+            isWalk = true;
+        }
+        StartCoroutine(bola());
+        IEnumerator bola()
+        {
+            yield return new WaitForSeconds(15f);
+            Bubble.SetActive(true);
+        }
     }
 
     void Update()
@@ -57,8 +70,9 @@ public class Dolphin : MonoBehaviour
             StartCoroutine(Wait());
             IEnumerator Wait()
             {
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(12f);
                 animator.SetBool("Talk", true);
+                // Bubble.SetActive(true);
             }
         }
         else

@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class Deer : MonoBehaviour
 {
@@ -62,17 +64,17 @@ public class Deer : MonoBehaviour
         }
 
         // Stop agent if within stopping distance
-         if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+        if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
         {
             playerCamera.enabled = false;
             if (isJumpscare == true)
             {
                 deerCamera.enabled = true;
                 jumpscareTimer += Time.deltaTime;
-                
+
                 if (jumpscareTimer >= 2f && !isGameOver)
                 {
-                    Debug.Log("Game Over!");
+                    SceneManager.LoadScene("GameOver");
                     isGameOver = true;
                 }
             }

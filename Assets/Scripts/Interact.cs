@@ -19,6 +19,7 @@ public class Interact : MonoBehaviour
     public TextMeshProUGUI textMeshPro;
     public TextMeshProUGUI textButton;
     public Animator animator;
+    public Animator box;
     void Start()
     {
 
@@ -127,7 +128,8 @@ public class Interact : MonoBehaviour
             if (currentObject != null && currentObject.tag == "box")
             {
                 Debug.Log("Box");
-                textMeshPro.text = "WTF is this?";
+                textMeshPro.text = "apa tuh?";
+                box.SetBool("Open", true);
                 currentObject = null;
                 isInTrigger = false;
             }
@@ -137,6 +139,12 @@ public class Interact : MonoBehaviour
         {
             textMeshPro.text = "Go Sleep";
             isSleep = true;
+        }
+
+        if (lumbas >= 2)
+        {
+            textMeshPro.text = "Next";
+            SceneManager.LoadScene("Ending");
         }
 
 
@@ -213,11 +221,11 @@ public class Interact : MonoBehaviour
                 isInTrigger = true;
                 currentObject = other.gameObject;
                 textButton.enabled = true;
-                textButton.text = "[LMB]";
+                // textButton.text = "[LMB]";
                 StartCoroutine(Walking(other.gameObject));
             }
 
-            if(other.gameObject.tag == "box")
+            if (other.gameObject.tag == "box")
             {
                 textMeshPro.text = "Open the box";
                 isInTrigger = true;

@@ -21,6 +21,9 @@ public class Scenario : MonoBehaviour
     {
         
     }
+    public void Lumbas(){
+        lumbas.SetActive(true);
+    }
 
     
 }

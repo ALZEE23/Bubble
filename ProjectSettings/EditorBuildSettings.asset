@@ -11,10 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage 1.unity
     guid: acdafde74146f57bfa6fe93e90cdd1cd
-  - enabled: 1
+  - enabled: 0
     path: Assets/PSXShaderKit/Demo/Demo Scene.unity
     guid: fcde39c9d7f2d954b9c02d05b59a9a83
   - enabled: 1
     path: Assets/Scenes/Stage 2.unity
     guid: 9f2d3c968911f78038f41bbd99b29cbc
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: e685a335c9ad2eec6b65a6600eb24ada
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: bafd6e1594c4fc841a259cd1a7a8972e
   m_configObjects: {}
